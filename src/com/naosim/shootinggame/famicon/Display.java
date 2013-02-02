@@ -72,5 +72,9 @@ public class Display implements Runnable {
 	public void setDrawer(Drawer drawer) {
 		this.drawer = drawer;
 	}
+	
+	public void setFramerate(long nanosec) {
+		oneFrameTime = nanosec;
+	}
 
 }

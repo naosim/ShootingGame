@@ -14,9 +14,10 @@ import android.view.SurfaceView;
 import com.naosim.shootinggame.famicon.Cassette;
 import com.naosim.shootinggame.famicon.Display;
 import com.naosim.shootinggame.famicon.Drawer;
+import com.naosim.shootinggame.famicon.EnterFrame;
 
 @SuppressLint("ParserError")
-public class MainActivity extends Activity implements Drawer{
+public class MainActivity extends Activity implements Drawer, EnterFrame{
 
     private Display display;
 
@@ -26,6 +27,7 @@ public class MainActivity extends Activity implements Drawer{
         setContentView(R.layout.activity_main);
                 
         display = new Display((SurfaceView)findViewById(R.id.gameMain));
+        display.setEnterFrame(this);
         display.setDrawer(this);
         new Handler().postDelayed(new Runnable() {
 
@@ -57,9 +59,17 @@ public class MainActivity extends Activity implements Drawer{
 		paint.setAntiAlias(true);
 		paint.setTextSize(24);
 
-		canvas.drawText("Hello, SurfaceView!", 0, paint.getTextSize(),
+		canvas.drawText("Hello, SurfaceView! " + count, 0, paint.getTextSize(),
 				paint);
 		Log.e("###", "loop");
+		
+	}
+
+	int count = 0;
+	
+	@Override
+	public void enterFrame() {
+		count++;
 		
 	}
 
