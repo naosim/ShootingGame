@@ -5,14 +5,12 @@ import java.util.List;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 
 import com.naosim.shootinggame.famicon.Drawer;
 
 public class MediaManager implements Drawer {
 
 	private List<Soul> field;
-	private int count;
 
 	public MediaManager() {
 	}
@@ -27,12 +25,16 @@ public class MediaManager implements Drawer {
 		
 		for(Soul soul : field) {
 			Paint paint = new Paint();
-			paint.setColor(Color.BLUE);
+			int color = Color.BLUE;
+			String s = "W";
+			if(soul.getStatus().type == 1) {
+				color = Color.RED;
+				s = "A";
+			}
+			paint.setColor(color);
 			paint.setTextSize(24);
-			canvas.drawText("w", soul.getStatus().x,
+			canvas.drawText(s, soul.getStatus().x,
 					soul.getStatus().y, paint);
-
-			
 		}
 	}
 

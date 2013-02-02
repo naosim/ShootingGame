@@ -12,6 +12,7 @@ public class Player implements Soul {
 		status = new Status();
 		status.x = 100f;
 		status.y = 100f;
+		status.type = 1;
 	}
 
 	@Override
