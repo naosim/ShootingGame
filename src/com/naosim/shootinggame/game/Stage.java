@@ -2,6 +2,8 @@ package com.naosim.shootinggame.game;
 
 import java.util.Random;
 
+import android.util.Log;
+
 import com.naosim.shootinggame.famicon.Display;
 import com.naosim.shootinggame.famicon.EnterFrame;
 
@@ -9,15 +11,22 @@ public class Stage implements EnterFrame {
 	
 	private SoulAdder soulAdder;
 	private Random random = new Random();
+	private Soul player;
 	
 	int count = 0;
 
+	public Stage(Soul player) {
+		this.player = player;
+	}
+	
 	public void setSoulAdder(SoulAdder soulAdder) {
 		this.soulAdder = soulAdder;
+		soulAdder.add(player);
 	}
 
 	@Override
 	public void enterFrame() {
+		
 		if(count == 0) {
 			Enemy enemy = new Enemy();
 			enemy.getStatus().x = (float)random.nextInt(Display.WIDTH);

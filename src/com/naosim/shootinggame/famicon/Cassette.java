@@ -6,4 +6,5 @@ public interface Cassette {
 	public Drawer getDrawer();
 	public EnterFrame getEnterFrame();
 	public EventManager getEventManager();
+	public void setControllerManager(ControllerManager controllerManager);
 }

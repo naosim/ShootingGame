@@ -14,7 +14,10 @@ public class MediaManager implements Drawer {
 	private List<Soul> field;
 	private int count;
 
-	public MediaManager(List<Soul> field) {
+	public MediaManager() {
+	}
+	
+	public void setField(List<Soul> field) {
 		this.field = field;
 	}
 

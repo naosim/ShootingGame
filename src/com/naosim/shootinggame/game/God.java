@@ -3,6 +3,8 @@ package com.naosim.shootinggame.game;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import com.naosim.shootinggame.famicon.Display;
 import com.naosim.shootinggame.famicon.EnterFrame;
 
