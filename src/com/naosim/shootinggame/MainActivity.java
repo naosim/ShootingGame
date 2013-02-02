@@ -9,28 +9,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
+import android.view.SurfaceView;
 
 import com.naosim.shootinggame.famicon.Cassette;
-import com.naosim.shootinggame.famicon.DisplayView;
+import com.naosim.shootinggame.famicon.Display;
 import com.naosim.shootinggame.famicon.Drawer;
 
 @SuppressLint("ParserError")
 public class MainActivity extends Activity implements Drawer{
 
-    private DisplayView surfaceView;
+    private Display display;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        surfaceView = (DisplayView)findViewById(R.id.gameMain);
-        surfaceView.setDrawer(this);
+                
+        display = new Display((SurfaceView)findViewById(R.id.gameMain));
+        display.setDrawer(this);
         new Handler().postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
-				surfaceView.start();
+				display.start();
 			}
         	
         }, 1000);
@@ -39,7 +40,7 @@ public class MainActivity extends Activity implements Drawer{
 	@Override
 	protected void onPause() {
 		super.onPause();
-		surfaceView.stop();
+		display.stop();
 	}
 
     @Override

@@ -1,11 +1,10 @@
 package com.naosim.shootinggame.famicon;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.util.AttributeSet;
 import android.view.SurfaceView;
 
-public class DisplayView extends SurfaceView implements Runnable {
+public class Display implements Runnable {
+	private SurfaceView surfaceView;
 	private boolean running;
 	private Thread renderThread;
 	private Drawer drawer;
@@ -13,17 +12,9 @@ public class DisplayView extends SurfaceView implements Runnable {
 
 	/** 1フーレム時間[ナノ秒] */
 	long oneFrameTime = 1 * 1000 * 1000 * 1000;
-
-	public DisplayView(Context context) {
-		super(context);
-	}
-
-	public DisplayView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
-
-	public DisplayView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
+	
+	public Display(SurfaceView surfaceView) {
+		this.surfaceView = surfaceView;
 	}
 
 	public void start() {
@@ -54,12 +45,12 @@ public class DisplayView extends SurfaceView implements Runnable {
 				enterFrame.enterFrame();
 			}
 			
-			Canvas canvas = getHolder().lockCanvas();
+			Canvas canvas = surfaceView.getHolder().lockCanvas();
 			if (drawer != null) {
 				drawer.draw(canvas);
 			}
 			// 描画
-			getHolder().unlockCanvasAndPost(canvas);
+			surfaceView.getHolder().unlockCanvasAndPost(canvas);
 			
 			// フレームレートになるようにwait
 			long endTime = System.nanoTime();
