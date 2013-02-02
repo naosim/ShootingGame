@@ -25,13 +25,7 @@ public class Enemy implements Soul {
 	}
 
 	@Override
-	public boolean hitTest(Soul soul) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void hit() {
+	public void hit(Soul soul) {
 		// TODO Auto-generated method stub
 		
 	}
