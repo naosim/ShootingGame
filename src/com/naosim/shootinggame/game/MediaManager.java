@@ -25,11 +25,8 @@ public class MediaManager implements Drawer {
 		for(Soul soul : field) {
 			Paint paint = new Paint();
 			paint.setColor(Color.BLUE);
-//			paint.setAntiAlias(true);
 			paint.setTextSize(24);
-
-
-			canvas.drawText("W" + (count++), soul.getStatus().x,
+			canvas.drawText("w", soul.getStatus().x,
 					soul.getStatus().y, paint);
 
 			

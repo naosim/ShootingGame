@@ -17,7 +17,6 @@ public class Enemy implements Soul {
 	@Override
 	public void enterFrame() {
 		status.y += 2;
-		Log.e("enemy", "y : " + status.y);
 	}
 
 	@Override

@@ -47,10 +47,12 @@ public class Display implements Runnable {
 			Canvas canvas = surfaceView.getHolder().lockCanvas();
 			
 			if (canvas != null) {
+				// キャンバスのサイズ調整
 				float width = canvas.getWidth();
 				float sx = width / WIDTH;
 				canvas.scale(sx, sx);
 				canvas.clipRect(new Rect(0, 0, WIDTH, HEIGHT));
+				
 				if (enterFrame != null) {
 					enterFrame.enterFrame();
 				}
@@ -59,7 +61,6 @@ public class Display implements Runnable {
 					drawer.draw(canvas);
 				}
 				// 描画
-//				canvas.scale(width / 256.0f, width / 256.0f);
 				surfaceView.getHolder().unlockCanvasAndPost(canvas);
 			}
 			// フレームレートになるようにwait
