@@ -7,6 +7,7 @@ import android.view.SurfaceView;
 
 import com.naosim.shootinggame.famicon.Cassette;
 import com.naosim.shootinggame.famicon.ControllerManager;
+import com.naosim.shootinggame.famicon.ControllerManager.ControlButtons;
 import com.naosim.shootinggame.famicon.Display;
 import com.naosim.shootinggame.famicon.Famicon;
 import com.naosim.shootinggame.game.ShootingGame;
@@ -23,7 +24,11 @@ public class MainActivity extends Activity {
 		Cassette cassette = new ShootingGame();
 
 		Display display = new Display((SurfaceView) findViewById(R.id.gameMain));
-		famicon = new Famicon(display, null);
+		ControlButtons buttons = new ControlButtons();
+		buttons.left = findViewById(R.id.button1);
+		buttons.right = findViewById(R.id.button2);
+	
+		famicon = new Famicon(display, buttons);
 		famicon.setCassette(cassette);
 	}
 

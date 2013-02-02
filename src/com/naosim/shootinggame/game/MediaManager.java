@@ -33,8 +33,8 @@ public class MediaManager implements Drawer {
 			}
 			paint.setColor(color);
 			paint.setTextSize(24);
-			canvas.drawText(s, soul.getStatus().x,
-					soul.getStatus().y, paint);
+			canvas.drawText(s, soul.getStatus().x - 12,
+					soul.getStatus().y - 12, paint);
 		}
 	}
 

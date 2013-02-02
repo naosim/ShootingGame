@@ -9,7 +9,7 @@ public class Famicon implements EnterFrame {
 
 	public Famicon(Display display, ControlButtons buttons) {
 		this.display = display;
-		display.setFramerate(1000 * 1000 * 1000 / 16);
+		display.setFramerate(40 * 1000 * 1000);
 		display.setEnterFrame(this);
 		this.controllerManager = new ControllerManager(buttons);
 	}
@@ -19,10 +19,12 @@ public class Famicon implements EnterFrame {
 	}
 
 	public void start() {
+		cassette.setControllerManager(controllerManager);
+		
 		cassette.start();
 		display.start();
 		
-		cassette.setControllerManager(controllerManager);
+		
 		display.setDrawer(cassette.getDrawer());
 	}
 

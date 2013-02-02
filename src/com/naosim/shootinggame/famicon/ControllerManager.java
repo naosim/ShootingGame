@@ -3,10 +3,12 @@ package com.naosim.shootinggame.famicon;
 import java.util.HashMap;
 
 import android.annotation.SuppressLint;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 
 @SuppressLint("ParserError")
-public class ControllerManager implements EnterFrame {
+public class ControllerManager implements EnterFrame, OnTouchListener {
 
 	private ControlButtons buttons;
 
@@ -14,6 +16,8 @@ public class ControllerManager implements EnterFrame {
 
 	public ControllerManager(ControlButtons buttons) {
 		this.buttons = buttons;
+		buttons.left.setOnTouchListener(this);
+		buttons.right.setOnTouchListener(this);
 	}
 
 	public boolean isOn(Control control) {
@@ -34,8 +38,18 @@ public class ControllerManager implements EnterFrame {
 	}
 	
 	public static class ControlButtons {
-		View left;
-		View right;
+		public View left;
+		public View right;
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		if(v == buttons.left) {
+			controlMap.put(Control.LEFT, Boolean.TRUE);
+		} else {
+			controlMap.put(Control.RIGHT, Boolean.TRUE);
+		}
+		return false;
 	}
 
 }

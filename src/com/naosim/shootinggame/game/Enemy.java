@@ -11,7 +11,7 @@ public class Enemy implements Soul {
 		status.x = 20;
 		status.y = 0;
 		status.hp = 1;
-		status.r = 4;
+		status.r = 6;
 	}
 
 	@Override
