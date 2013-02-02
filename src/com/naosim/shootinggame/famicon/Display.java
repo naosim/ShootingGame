@@ -43,35 +43,43 @@ public class Display implements Runnable {
 	@Override
 	public void run() {
 		while (running) {
-			long startTime = System.nanoTime();
-			Canvas canvas = surfaceView.getHolder().lockCanvas();
+			loop();
+		}
+	}
+	
+	public void loop() {
+		long startTime = System.nanoTime();
+		Canvas canvas = surfaceView.getHolder().lockCanvas();
+		
+		if (canvas != null) {
+			optCanvas(canvas);
 			
-			if (canvas != null) {
-				// キャンバスのサイズ調整
-				float width = canvas.getWidth();
-				float sx = width / WIDTH;
-				canvas.scale(sx, sx);
-				canvas.clipRect(new Rect(0, 0, WIDTH, HEIGHT));
-				
-				if (enterFrame != null) {
-					enterFrame.enterFrame();
-				}
+			if (enterFrame != null) enterFrame.enterFrame();
 
-				if (drawer != null) {
-					drawer.draw(canvas);
-				}
-				// 描画
-				surfaceView.getHolder().unlockCanvasAndPost(canvas);
-			}
-			// フレームレートになるようにwait
-			long endTime = System.nanoTime();
-			long waitTime = oneFrameTime - (endTime - startTime);
-			if (waitTime > 0) {
-				try {
-					Thread.sleep(waitTime / 1000000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+			if (drawer != null) drawer.draw(canvas);
+			// 描画
+			surfaceView.getHolder().unlockCanvasAndPost(canvas);
+		}
+		// フレームレートになるようにwait
+		long endTime = System.nanoTime();
+		long waitTime = oneFrameTime - (endTime - startTime);
+		waitThread(waitTime);
+	}
+	
+	public void optCanvas(Canvas canvas) {
+		// キャンバスのサイズ調整
+		float width = canvas.getWidth();
+		float sx = width / WIDTH;
+		canvas.scale(sx, sx);
+		canvas.clipRect(new Rect(0, 0, WIDTH, HEIGHT));
+	}
+	
+	private void waitThread(long waitNanoSec) {
+		if (waitNanoSec > 0) {
+			try {
+				Thread.sleep(waitNanoSec / 1000000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}

@@ -48,11 +48,15 @@ public class God implements EnterFrame, SoulAdder {
 			Soul a = field.get(i);
 			for (int j = i + 1; j < field.size(); j++) {
 				Soul b = field.get(j);
-				if (hitTest(a.getStatus(), b.getStatus())) {
-					a.hit(b);
-					b.hit(a);
-				}
+				hitTest(a, b);
 			}
+		}
+	}
+	
+	public void hitTest(Soul a, Soul b) {
+		if (hitTest(a.getStatus(), b.getStatus())) {
+			a.hit(b);
+			b.hit(a);
 		}
 	}
 

@@ -23,10 +23,16 @@ public class MediaManager implements Drawer {
 	@Override
 	public void draw(Canvas canvas) {
 		canvas.drawColor(Color.GRAY);
-
-		for (Soul soul : field) {
+		for (int i = 0, count = field.size(); i < count; i++) {
+			Soul soul = field.get(i);
+//		for (Soul soul : field) {
 			Paint paint = new Paint();
-			paint.setColor(Color.argb(255, 255, 255, 255));
+			if(soul.isDead()) {
+				paint.setColor(Color.argb(255, 255, 255, 0));
+			} else {
+				paint.setColor(Color.argb(255, 255, 255, 255));
+			}
+			
 			Rect rect = new Rect(
 					(int) (soul.getStatus().x - soul.getStatus().r),
 					(int) (soul.getStatus().y - soul.getStatus().r),

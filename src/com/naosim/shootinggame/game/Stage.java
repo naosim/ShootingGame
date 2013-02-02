@@ -28,6 +28,7 @@ public class Stage implements EnterFrame {
 
 		if (count == 0) {
 			Enemy enemy = new Enemy();
+			enemy.setSoupAdder(soulAdder);
 			enemy.getStatus().x = (float) random.nextInt(Display.WIDTH);
 			this.soulAdder.add(enemy);
 		}
