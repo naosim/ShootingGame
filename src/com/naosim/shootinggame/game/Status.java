@@ -5,5 +5,11 @@ public class Status {
 	public float y;
 	public float r;
 	public int hp;
-	public int type;
+	public Type type;
+	
+	public static enum Type {
+		PLAYER,
+		ENEMY,
+		SHOT,
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
 import com.naosim.shootinggame.famicon.Drawer;
 
@@ -14,7 +15,7 @@ public class MediaManager implements Drawer {
 
 	public MediaManager() {
 	}
-	
+
 	public void setField(List<Soul> field) {
 		this.field = field;
 	}
@@ -22,20 +23,16 @@ public class MediaManager implements Drawer {
 	@Override
 	public void draw(Canvas canvas) {
 		canvas.drawColor(Color.GRAY);
-		
-		for(Soul soul : field) {
+
+		for (Soul soul : field) {
 			Paint paint = new Paint();
-			int color = Color.BLUE;
-			String s = "W";
-			if(soul.getStatus().type == 1) {
-				color = Color.RED;
-				s = "A";
-			}
-			paint.setColor(color);
-			paint.setTextSize(24);
-			canvas.drawText(s, soul.getStatus().x - 12,
-					soul.getStatus().y - 12, paint);
+			paint.setColor(Color.argb(255, 255, 255, 255));
+			Rect rect = new Rect(
+					(int) (soul.getStatus().x - soul.getStatus().r),
+					(int) (soul.getStatus().y - soul.getStatus().r),
+					(int) (soul.getStatus().x + soul.getStatus().r),
+					(int) (soul.getStatus().y + soul.getStatus().r));
+			canvas.drawRect(rect, paint);
 		}
 	}
-
 }

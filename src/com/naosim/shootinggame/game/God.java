@@ -3,8 +3,6 @@ package com.naosim.shootinggame.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
 import com.naosim.shootinggame.famicon.Display;
 import com.naosim.shootinggame.famicon.EnterFrame;
 
@@ -23,8 +21,8 @@ public class God implements EnterFrame, SoulAdder {
 		killSouls();
 
 		stage.enterFrame();
-		for (Soul soul : field) {
-			soul.enterFrame();
+		for (int i = 0, count = field.size(); i < count; i++) {
+			field.get(i).enterFrame();
 		}
 
 		// あたり判定
@@ -59,7 +57,8 @@ public class God implements EnterFrame, SoulAdder {
 	}
 
 	public static boolean hitTest(Status a, Status b) {
-		if(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2) < Math.pow(a.r + b.r, 2)) {
+		if (Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2) < Math.pow(a.r
+				+ b.r, 2)) {
 			return true;
 		}
 		return false;
